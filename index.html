@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venlisa</title>
+
+  
+  <meta name="description" content="" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Venlisa" />
+  <meta property="og:image" content="https://ik.imagekit.io/fojb8puzo/Untitled%20(62).png" />
+  <link rel="icon" type="image/png" href="https://ik.imagekit.io/fojb8puzo/Untitled%20(62).png" />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #a62020;           /* اللون الأحمر الأساسي */
+      --gold-light: #c44a4a;     /* درجة أفتح من الأحمر */
+      --gold-dark: #7a1a1a;       /* درجة أغمق من الأحمر */
+      --whatsapp: #25D366;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at center, #000 50%, #0a0a0a 100%);
+      background-color: #000;
+      color: var(--gold);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeInBody 1.5s ease forwards;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; filter: blur(10px); }
+      to { opacity: 1; filter: blur(0); }
+    }
+
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(166, 32, 32, 0.08), transparent 75%);
+      transform: translate(-50%, -50%);
+      filter: blur(45px);
+      animation: subtleGlow 9s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes subtleGlow {
+      0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(166, 32, 32, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--gold);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 390px;
+      padding: 40px 30px;
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.95));
+      border-radius: 22px;
+      border: 1px solid rgba(166, 32, 32, 0.4);
+      box-shadow: 0 0 60px rgba(166, 32, 32, 0.15), inset 0 0 30px rgba(166, 32, 32, 0.08);
+      backdrop-filter: blur(12px);
+      margin: 60px 0;
+      animation: floatUp 1.4s ease forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 0 80px rgba(166, 32, 32, 0.25);
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 40px rgba(166, 32, 32, 0.45);
+      object-fit: cover;
+      animation: logoPulse 5s ease-in-out infinite;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 70px rgba(166, 32, 32, 0.6);
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { box-shadow: 0 0 25px rgba(166, 32, 32, 0.4); }
+      50% { box-shadow: 0 0 55px rgba(166, 32, 32, 0.8); }
+    }
+
+    
+    .logo-ring {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-top: 1px solid var(--gold);
+      animation: spin 3s linear infinite;
+      opacity: 0.7;
+    }
+
+    
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4em;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold-dark), var(--gold-light));
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 250%;
+      animation: goldShine 6s linear infinite;
+      margin: 0 0 10px;
+      text-shadow: 0 0 30px rgba(166, 32, 32, 0.25);
+    }
+
+    @keyframes goldShine {
+      0% { background-position: 0%; }
+      100% { background-position: 250%; }
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #d1c6a2;
+      letter-spacing: 3px;
+      margin-bottom: 35px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .subtitle::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    
+    .links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .links li {
+      margin: 15px 0;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .links li:nth-child(n) {
+      animation-delay: calc(0.15s * var(--i));
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 15px 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+      border: 1px solid rgba(166, 32, 32, 0.3);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.1em;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .links a::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(166,32,32,0.3), rgba(255,255,255,0));
+      transition: all 0.6s ease;
+    }
+
+    .links a:hover::before {
+      left: 100%;
+    }
+
+    .links a:hover {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      color: #000;
+      box-shadow: 0 10px 25px rgba(166, 32, 32, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .links a img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+
+    .links a:hover img {
+      filter: brightness(0) invert(1);
+    }
+
+    
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 15px 22px;
+      background: linear-gradient(145deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05));
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.1em;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .whatsapp-btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(37, 211, 102, 0.3), rgba(255,255,255,0));
+      transition: all 0.6s ease;
+    }
+
+    .whatsapp-btn:hover::before {
+      left: 100%;
+    }
+
+    .whatsapp-btn:hover {
+      background: linear-gradient(90deg, var(--whatsapp), #5df78d);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .whatsapp-btn img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+
+    
+    .whatsapp-section {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+   
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(166, 32, 32, 0.2);
+      font-size: 0.9em;
+      color: rgba(209, 198, 162, 0.7);
+    }
+
+    
+    @media (max-width: 480px) {
+      h1 { font-size: 2em; }
+      .container { width: 88%; padding: 28px; margin: 40px 0; }
+      .links a { font-size: 1em; padding: 13px 18px; }
+      .whatsapp-btn { font-size: 1em; padding: 13px 18px; }
+      .logo { width: 110px; height: 110px; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+  </div>
+
+  
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://ik.imagekit.io/fojb8puzo/venlisa%20logo.png" class="logo" alt="Venlisa Logo">
+      <div class="logo-ring"></div>
+    </div>
+    
+    <h1>VENLISA</h1>
+    <p class="subtitle">Sevgiyle Üretildi</p>
+
+    <ul class="links">
+      <!-- Instagram -->
+      <li style="--i:1"><a href="https://www.instagram.com/sarniva1/?utm_source=qr&r=nametag" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"/>Instagram</a></li>
+      <!-- Facebook -->
+      <li style="--i:2"><a href="https://www.facebook.com/profile.php?id=61571271936546" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"/>Facebook</a></li>
+      <!-- TikTok -->
+      <li style="--i:3"><a href="https://www.tiktok.com/@venlisa_tr" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"/>TikTok</a></li>
+      
+      <!-- WhatsApp button (first number only) -->
+      <li style="--i:4">
+        <div class="whatsapp-section">
+          <a href="https://wa.me/201007800596" class="whatsapp-btn" target="_blank">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp"/>
+            whatsapp
+          </a>
+        </div>
+      </li>
+      
+      <!-- Main Website -->
+      <li style="--i:5"><a href="https://a2m7u1n2.github.io/Karas_Fashion/" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/domain.png" alt="Website"/>Main Website</a></li>
+    </ul>
+
+    <div class="footer">
+      Türkiye'de dizayn edilmiştir
+    </div>
+  </div>
+
+  <script>
+    
+    window.addEventListener('load', function() {
+      const loading = document.getElementById('loading');
+      setTimeout(() => {
+        loading.classList.add('hidden');
+      }, 500);
+    });
+
+    
+    document.querySelector('.container').addEventListener('click', function(e) {
+      if (e.target === this) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
